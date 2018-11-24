@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			
+			function checkPass(obj,num){
+				var 正则 = /^[a-z]{4,8}$/;
+				if(num==1){
+					if(""==obj.value){
+						document.getElementById("errorPass1").innerHTML = "密码不能为空!";
+					}else{
+						
+						var b = 正则.test(obj.value);
+						if(b){
+							document.getElementById("errorPass1").innerHTML = "密码可以使用!";
+							var pass2 = document.getElementById("pass2").value;
+							if(obj.value==pass2){
+								document.getElementById("errorPass2").innerHTML = "两次输入一致!";
+							}
+						}else{
+							document.getElementById("errorPass1").innerHTML = "密码不可以使用!";
+						}
+					}
+				}else{
+					//为空最大
+					if(""==obj.value){
+						document.getElementById("errorPass2").innerHTML = "确认密码不能为空!";
+					}else{
+						//不一致其次
+						var pass1 = document.getElementById("pass1").value;
+						if(obj.value==pass1){
+							document.getElementById("errorPass2").innerHTML = "两次输入一致!";
+						}else{
+							document.getElementById("errorPass2").innerHTML = "两次输入不一致!";
+						}
+						//不符合正则
+					}
+				}
+			}
+			
+			
+		</script>
+	</head>
+	<body>
+		
+		密码:<input type="password" name="pass" id="pass1" onblur="checkPass(this,1)" />
+		<span id="errorPass1"></span>
+		<br />
+		确认密码:<input type="password" name="pass" id="pass2" onblur="checkPass(this,2)" />
+		<span id="errorPass2"></span>
+		<br />
+		
+	</body>
+</html>

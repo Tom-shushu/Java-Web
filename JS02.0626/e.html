@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>表单验证</title>
+		<script type="text/javascript">
+			function checkForm(){
+				var name = document.getElementById("name");
+				if(""==name.value.trim()){
+					document.getElementById("errorName").innerHTML = "你的姓名不能为空!";
+					return false;//遇到false就不跳转了
+				}
+			}
+			
+			function checkName(obj){
+				if(""==obj.value){
+					document.getElementById("errorName").innerHTML = "你的姓名不能为空!";
+					obj.style.borderColor = "red";
+					obj.style.backgroundColor = "pink";
+				}else{
+					//通过正则表达式实现姓名为:6-10位的字母和数字
+					var 正则 = /^[a-zA-Z0-9]{6,10}$/;
+					var b = 正则.test(obj.value);//验证Obj.value的值是否符合正则
+					if(b){
+						document.getElementById("errorName").innerHTML = "你的姓名可以使用!";
+						document.getElementById("errorName").style.color = "green";
+					}else{
+						document.getElementById("errorName").innerHTML = "你的姓名不可以使用!";
+						document.getElementById("errorName").style.color = "red";
+					}
+					
+					
+				}
+			}
+			
+			function checkPass(obj){
+				if(""==obj.value){
+					document.getElementById("errorPass").innerHTML = "你的密码不能为空!";
+				}else{
+					var 正则 = /^[a-zA-Z0-9]{6,12}$/;
+					var b = 正则.test(obj.value);
+					if(b){
+						document.getElementById("errorPass").innerHTML = "你的密码可以使用!";
+						document.getElementById("errorPass").style.color = "green";
+					}else{
+						document.getElementById("errorPass").innerHTML = "你的密码不可以使用!";
+						document.getElementById("errorPass").style.color = "red";
+					}
+				}
+			}
+			
+			function checkAPass(obj){
+				var pass = document.getElementById("pass");
+				if(pass.value==obj.value){
+					
+				}else{
+					document.getElementById("errorAPass").innerHTML = "你两次输入的密码不一致!";
+					document.getElementById("errorAPass").style.color = "red";
+					document.getElementById("errorPass").innerHTML = "";
+				}
+			}
+			
+			//获取焦点时恢复原位
+			function changeName(obj){
+				document.getElementById("errorName").innerHTML = "";
+				obj.style.borderColor = "";
+				obj.style.backgroundColor = "";
+			}
+			
+			function checkTel(obj){
+				var 正则 = /^[1][3-8][0-9]{9}$/;
+				if(正则.test(obj.value)){
+					document.getElementById("errorTel").innerHTML = "手机号可以使用";
+				}else{
+					document.getElementById("errorTel").innerHTML = "请输入正确的手机号";
+				}
+			}
+			
+			function checkEmail(obj){
+				var 正则 = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+				if(正则.test(obj.value)){
+					document.getElementById("errorEmail").innerHTML = "邮箱可以使用";
+				}else{
+					document.getElementById("errorEmail").innerHTML = "请输入正确的邮箱";
+				}
+			} 
+		</script>
+	</head>
+	<body>
+		
+		<form action="a.html">
+			账号:<input type="text" name="name" id="name" onblur="checkName(this)" onfocus="changeName(this)"/>
+			<span id="errorName"></span>
+			<br />
+			密码:<input type="password" name="pass" id="pass" onblur="checkPass(this)" />
+			<span id="errorPass"></span>
+			<br />
+			确认密码:<input type="password" name="pass" id="pass2" onblur="checkAPass(this)" />
+			<span id="errorAPass"></span>
+			<br />
+			性别:
+			<input type="radio" name="sex" value="男" checked="true" />男
+			<input type="radio" name="sex" value="女" />女
+			<br />
+			手机号:
+			<input  type="tel" name="tel" id="tel" onblur="checkTel(this)" />
+			<span id="errorTel"></span>
+			<br />
+			邮箱:
+			<input  type="email" name="email" id="email" onblur="checkEmail(this)" />
+			<span id="errorEmail"></span>
+			<br />
+			<input type="submit" value="提交" onclick="return checkForm()" />
+		</form>
+		
+	</body>
+</html>

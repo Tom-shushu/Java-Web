@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>函数的详细讲解</title>
+		<script type="text/javascript">
+			/*
+			function 函数名(形参列表){
+				[return 结果;]
+			}
+			*/
+			//这里a和b的类型是什么?在声明时,无法确定
+			function funA(a, b) {
+				var c = a + b;
+				return c;
+			}
+
+			function funB() {
+				alert(funA(3, 4));
+			}
+		</script>
+	</head>
+
+	<body onload="funB()">
+	</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<script type="text/javascript">
+			function funA(){
+				var v1 = location.pathname;
+				var v2 = location.port;
+				var v3 = location.protocol;
+				var v4 = location.host;
+				var v5 = location.href ; //重点
+				var v6 = location.hostname;
+				alert(v1);
+				alert(v2);
+				alert(v3);
+				alert(v4);
+				alert(v5);
+				alert(v6);
+			}
+			
+			function funB(){
+				//将当前的地址栏设置成"http://www.baidu.com",其实就是在跳转到"http://www.baidu.com"
+				//location.href = "http://127.0.0.1:8020/JS02/index.html";//绝对路径
+				location.href = "index.html";//相对路径
+			}
+		</script>
+		
+	</head>
+	<body>
+		<button onclick="funA()">funA</button>
+		<button onclick="funB()">funB</button>
+	</body>
+</html>

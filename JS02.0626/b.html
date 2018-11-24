@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			function funA(){
+				history.back();//返回上一个页面
+			}
+			function funB(){
+				history.forward();//去下一个页面
+			}
+			function funC(){
+				history.go(2);//去哪个页面
+			}
+		</script>
+	</head>
+	<body>
+		<button onclick="funA()">back</button>
+		<button onclick="funB()">forward</button>
+		<button onclick="funC()">go</button>
+	</body>
+</html>
