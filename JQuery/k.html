@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+		<script>
+			$(document).ready(function() {
+				//$(":enabled").val("你好"); //可用
+				//$(":disabled").val("Hello"); //不可用
+				$("button").bind("click",function(){
+					//获取到所有选中
+					var $list = $(":checked");//获取到所有被选中(单选,复选,下拉)
+					//var $list = $(":selected");//获取到所有被选中(下拉)
+					
+					for(var i=0;i<$list.length;i++){
+						var $obj = $list.eq(i);
+						alert($obj.val());
+					}
+				});
+				
+			});
+		</script>
+	</head>
+
+	<body>
+		<button>选中</button>
+		<br />
+		<input type="text" disabled="true" /><br />
+		<input type="text" /><br />
+		<hr />
+		单选框:
+		<input type="radio" name="sex" value="d1"/>
+		<input type="radio" name="sex" value="d2"/>
+		<input type="radio" name="sex" value="d3"/>
+		<br />
+		复选框:
+		<input type="checkbox" name="love" value="f1"/>
+		<input type="checkbox" name="love" value="f2"/>
+		<input type="checkbox" name="love" value="f3"/>
+		<input type="checkbox" name="love" value="f4"/>
+		<input type="checkbox" name="love" value="f5"/>
+		<br />
+		下拉菜单:
+		<select>
+			<option value="x1">1</option>
+			<option value="x2">2</option>
+			<option value="x3">3</option>
+			<option value="x4">4</option>
+			<option value="x5">5</option>
+			<option value="x6">6</option>
+		</select>
+		<br />
+		
+	</body>
+
+</html>

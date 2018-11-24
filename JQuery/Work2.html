@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			table{
+				margin: auto;
+				border: 1px gray solid;
+				width: 400px;
+				height: 200px;
+			}
+			
+		</style>
+		<script>
+			var i = 1;
+			var objs = document.getElementsByTagName("a");
+			function imgChange(){
+				document.getElementById("img1").src = "img/"+i+".jpg";
+				objs[i-1].style.color = "red";
+				var j = ((i==1)?4:(i-1-1));
+				
+				objs[j].style.color = "blue";
+				if(i==5){
+					i = 1;
+				}else{
+					i++;
+				}
+				setTimeout("imgChange()",2000);
+			}
+			
+		</script>
+	</head>
+	<body onload="imgChange()">
+		<table align="center">
+			<tr>
+				<td><img src="img/1.jpg" width="400" height="170" id="img1" /></td>
+			</tr>
+			<tr>
+				<td align="right">
+					<a href="#">1</a>
+					<a href="#">2</a>
+					<a href="#">3</a>
+					<a href="#">4</a>
+					<a href="#">5</a>
+					
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

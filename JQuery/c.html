@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var $l2 = $("#l2");//单个元素的集合
+				//获取或者设置指定CSS的内容
+				//$l2.css("color","red");
+				//$l2.css("backgroundColor","gray");
+				
+				var $c1 = $(".c1");//集合  2个
+				
+				//$c1.css("color","aquamarine");
+				//$c1.css("backgroundColor","pink");
+				
+				var $label = $("label");
+				
+				//$label.css("color","black");
+				//$label.css("backgroundColor","green");
+				
+				var $html = $("*");//获取到所有
+				//$html.css("color","aquamarine");
+				//$html.css("backgroundColor","pink");
+				
+				var $list = $("#l1,#l4,#l6");//获取到的是编号为l2'和'编号为l4的
+				$list.css("color","aquamarine");
+				$list.css("backgroundColor","pink");
+			})
+		</script>
+	</head>
+	<body>
+		<label id="l1">a</label><br />
+		<label id="l2">b</label><br />
+		<label id="l3" class="c1">c</label><br />
+		<label id="l4">d</label><br />
+		<label id="l5">e</label><br />
+		<span id="s1" class="c1">f</span><br />
+		<label id="l6">g</label><br />
+	</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+		<script>
+			$(document).ready(function(){
+				$("button").bind("click",function(){
+					var v = $(this).html();
+					
+					if("setHtml"==v){
+						$("#l1").html("设置HTML内容");
+					}else if("getHtml"==v){
+						var h = $("#l1").html();
+						alert("显示:"+h);
+					}else if("setCss"==v){
+						$("#l1").css("color","red");
+					}else if("getCss"==v){
+						var h = $("#l1").css("color");
+						alert(h);
+					}else if("setValue"==v){
+						$("#t1").val("设置的内容");
+					}else if("getValue"==v){
+						var h = $("#t1").val();
+						alert(h);
+					}else if("setAttr"==v){
+						$("#t1").attr("type","password");
+					}else if("getAttr"==v){
+						var h = $("#t1").attr("type");
+						alert(h);
+					}else if("setText"==v){
+						$("#l1").text("<label>内容</label>");
+					}else if("getText"==v){
+						var h = $("#l1").text();
+						alert(h);
+					}
+					
+				});
+			});
+
+		</script>
+	</head>
+	<body>
+		<button>setHtml</button>
+		<button>getHtml</button>
+		<br />
+		<button>setCss</button>
+		<button>getCss</button>
+		<br />
+		<button>setValue</button>
+		<button>getValue</button>
+		<br />
+		<button>setAttr</button>
+		<button>getAttr</button>
+		<br />
+		<button>setText</button>
+		<button>getText</button>
+		<br />
+		<div id="l1">11111111111</div>
+		<input type="text" id="t1" />
+		
+	</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>定时器移动</title>
+		<style>
+			div{
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				width: 100px;
+				height: 100px;
+				background-color: red;
+			}
+		</style>
+		
+		<script>
+			var obj;
+			var maxHeight,maxWidth;
+			var timer;
+			var initTop=0,initLeft=0;
+			
+			var directionTop = true;//true:向下
+			var directionLeft = true;//true:向右
+			function initDiv(){
+				obj = document.getElementById("d1");
+				maxHeight = window.innerHeight;
+				maxWidth = window.innerWidth;
+				divMove();
+			}
+			
+			
+			function divMove(){
+				obj = document.getElementById("d1");
+				var nowTop = parseInt(obj.style.top);
+				var nowLeft = parseInt(obj.style.left);
+				//设置当碰到底部时,上下方向改变
+				if(nowTop>=maxHeight-100){
+					directionTop = false;
+				}
+				//设置当碰到顶部时,上下方向改变
+				if(nowTop==0){
+					directionTop = true;
+				}
+				//设置当碰到右部时,上下方向改变
+				if(nowLeft>=maxWidth-100){
+					directionLeft = false;
+				}
+				//设置当碰到左部时,上下方向改变
+				if(nowLeft==0){
+					directionLeft = true;
+				}
+				
+				
+				if(directionTop){
+					initTop++;
+				}else{
+					initTop--;
+				}
+				
+				if(directionLeft){
+					initLeft++;
+				}else{
+					initLeft--;
+				}
+				
+				obj.style.top = initTop + "px";
+				obj.style.left = initLeft + "px";
+				timer = setTimeout("divMove()",1);
+			}
+			
+			function stopDiv(){
+				clearTimeout(timer);
+			}
+			
+		</script>
+		
+	</head>
+	<body onload="initDiv()">
+		<div id="d1" onmouseover="stopDiv()" onmouseout="divMove()"></div>
+	</body>
+</html>

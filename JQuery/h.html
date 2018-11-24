@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+		<script>
+			$(document).ready(function(){
+				//如何给标签添加事件
+				//对象.bind(事件名,函数);//给对象绑定了一个事件,当这种事件发生时,执行函数
+				//对象.unbind(事件名);//解除绑定某个事件
+				$("#b1").bind("click",function(){
+					$("#d1").hide(3000);
+				});
+				
+				$("#b2").bind("click",function(){
+					$("#d1").show(3000);
+				})
+				
+				$("#b3").bind("click",function(){
+					$("#d1").toggle(3000);
+				})
+				
+				$("button").bind("click",function(){
+					var v = $(this).html();
+					if("fadeIn"==v){
+						$("#d1").fadeIn(1000);
+					}else if("fadeOut"==v){
+						$("#d1").fadeOut(1000);
+					}else if("slideDown"==v){
+						$("#d1").slideDown(1000);
+					}else if("slideUp"==v){
+						$("#d1").slideUp(1000);
+					}else if("slideToggle"==v){
+						$("#d1").slideToggle(1000);
+					}
+				});
+				
+			})
+
+		</script>
+	</head>
+	<body>
+		<button id="b1">隐藏</button>
+		<button id="b2">显示</button>
+		<button id="b3">toggle</button>
+		<br />
+		<button>fadeIn</button>
+		<button>fadeOut</button>
+		<button>slideDown</button>
+		<button>slideUp</button>
+		<button>slideToggle</button>
+		
+		<br /><br />
+		<div id="d1" style="background-color: red;height: 200px;">你好,我这个是一个DIV</div>
+		
+	</body>
+</html>

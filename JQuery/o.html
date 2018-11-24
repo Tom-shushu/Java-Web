@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+		<script>
+			$(document).ready(function(){
+				var i = 1;
+				$("button").bind("click",function(){
+					var v = $(this).html();
+					if("after"==v){
+						$("div").after("你好,中国!"+i);
+					}else if("before"==v){
+						$("div").before("<label style='color:beige'>你好,我是label"+i+"</label>");
+					}else if("append"==v){
+						$("div").append("你好,我是append"+i);
+					}else if("prepend"==v){
+						$("div").prepend("你好,我是prepend"+i);
+					}else if("remove"==v){
+						$("div").remove();
+					}else if("empty"==v){
+						$("div").empty();
+					}
+					
+					i++;
+				});
+				
+			});
+		</script>
+	</head>
+	<body>
+		<button>after</button>
+		<button>before</button>
+		<button>append</button>
+		<button>prepend</button>
+		<br />
+		<button>remove</button>
+		<button>empty</button>
+		<hr />
+		<div style="background-color: red;"></div>
+		
+	</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+		<script>
+			$(document).ready(function(){
+				//获取父亲
+				//$("#l1").parent().css("backgroundColor","red");
+				//获取儿子们
+				//var $childrens = $("#d1").children();
+				//$childrens.eq(2).css("color","aquamarine");
+				//获取所有兄弟(相邻节点)
+				//var $siblings = $("#p1").siblings();
+				//$siblings.css("color","blanchedalmond");
+				//获取所有兄节点
+				//var $brothers = $("#p1").prevAll();
+				//$brothers.css("color","blueviolet");
+				//获取到上一个兄节点
+				//var $brother = $("#p1").prev();
+				//$brother.css("color","blueviolet");
+				//获取到所有弟节点
+				//var $youngerBrothers = $("#p1").nextAll();
+				//$youngerBrothers.css("color","blueviolet");
+				//获取到下一个弟节点
+				var $youngerBrother = $("#p1").next();
+				$youngerBrother.css("color","blueviolet");
+			});
+		</script>
+	</head>
+	<body>
+		
+		<div id="d1">
+			
+			<p>a</p>
+			<label id="l1">b</label>
+			<div>
+				<p>c</p>
+			</div>
+			<p id="p1">d</p>
+			<span>e</span>
+			<p>f</p>
+			<p>g</p>
+			
+		</div>
+		
+	</body>
+</html>

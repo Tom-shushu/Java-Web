@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+		<script>
+			$(document).ready(function() {
+				$("#c1").bind("click",function(){
+					var isChecked = $("#c1").get(0).checked;
+					if(isChecked){
+						//$(".c2").attr("checked",true);
+						
+						var $list = $(".c2");
+						for(var i=0;i<$list.length;i++){
+							var obj = $list.eq(i).get(0);
+							obj.checked = true;
+						}
+						
+					}else{
+						//$(".c2").attr("checked",false);
+						var $list = $(".c2");
+						for(var i=0;i<$list.length;i++){
+							var obj = $list.eq(i).get(0);
+							obj.checked = false;
+						}
+					}
+				});
+				
+				$("button").bind("click",function(){
+					var v = $(this).html();
+					if("全选"==v){
+						var $list = $(".c2");
+						for(var i=0;i<$list.length;i++){
+							var obj = $list.eq(i).get(0);
+							obj.checked = true;
+						}
+						$("#c1").attr("checked",true);
+					}else if("全不选"==v){
+						var $list = $(".c2");
+						for(var i=0;i<$list.length;i++){
+							var obj = $list.eq(i).get(0);
+							obj.checked = false;
+						}
+						$("#c1").attr("checked",false);
+					}else if("反选"==v){
+						var $list = $(".c2");
+						for(var i=0;i<$list.length;i++){
+							var obj = $list.eq(i).get(0);
+							if(obj.checked){
+								obj.checked = false;
+							}else{
+								obj.checked = true;
+							}
+						}
+					}
+				});
+			});
+		</script>
+	</head>
+	<body>
+		你爱好的运动是?
+		<input type="checkbox" id="c1" name="all" value="all"/>全选/全不选
+		<br />
+		<input type="checkbox" class="c2" name="love"/>足球
+		<input type="checkbox" class="c2" name="love"/>篮球
+		<input type="checkbox" class="c2" name="love"/>羽毛球
+		<input type="checkbox" class="c2" name="love"/>乒乓球
+		<br />
+		<button>全选</button>
+		<button>全不选</button>
+		<button>反选</button>
+	</body>
+</html>
