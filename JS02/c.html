@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>总的练习</title>
+		<style>
+			table{
+				margin: auto;
+				border: 1px gray solid;
+				width: 80%;
+			}
+			th,td{
+				border: 1px gray solid;
+			}
+			
+		</style>
+		<script type="text/javascript">
+			var i = 1;
+			var b = true;//true:修改前 false:修改后
+			function addTr(){			
+				var nameVal = document.getElementById("name").value;
+				var ageVal = document.getElementById("age").value;
+				if(""!=nameVal&&""!=ageVal){
+					var trNode,tdIdNode,tdNameNode,tdAgeNode,tdActionNode;
+					trNode = document.createElement("tr");
+					tdIdNode = document.createElement("td");
+					tdNameNode = document.createElement("td");
+					tdAgeNode = document.createElement("td");
+					tdActionNode = document.createElement("td");
+					
+					tdIdNode.textContent = i;
+					tdNameNode.textContent = nameVal;
+					tdAgeNode.textContent = ageVal;
+					tdActionNode.innerHTML = "<button onclick='delTrNode(this)'>删除一行</button>&nbsp;<button onclick='updateTrNode(this)'>修改行</button>";
+					
+					trNode.appendChild(tdIdNode);
+					trNode.appendChild(tdNameNode);
+					trNode.appendChild(tdActionNode);
+					trNode.appendChild(tdAgeNode);
+					
+					document.getElementById("tbody").appendChild(trNode);
+					
+					//更有用户体验度
+					document.getElementById("name").value = "";
+					document.getElementById("age").value = "";
+					
+					i++;
+				}
+				
+			}
+			//有一个形式参数的函数,obj代表的是哪一个button按钮
+			function delTrNode(obj){
+				//首先获取到button所在的列
+				var buttonFathor = obj.parentNode;//td
+				var buttonFathorFathor = buttonFathor.parentNode;//tr
+				document.getElementById("tbody").removeChild(buttonFathorFathor);//将谁从谁那里删除
+			}
+			
+			function updateTrNode(buttons){
+				var buttonFathor = buttons.parentNode;//td
+				var nameNode = buttonFathor.previousSibling;//上一个
+				var ageNode = buttonFathor.nextSibling;//下一个
+				if(b){
+					nameNode.innerHTML = "<input type='text' id='updatename' value='"+nameNode.innerHTML+"' />";
+					ageNode.innerHTML = "<input type='text' id='updateage' value='"+ageNode.innerHTML+"' />";
+					b = false;
+				}else{
+					var unv = document.getElementById("updatename").value;
+					var uav = document.getElementById("updateage").value;
+					nameNode.innerHTML = unv;
+					ageNode.innerHTML = uav;
+					b = true;
+				}
+			}
+			
+			//清空
+			function clearTBody(){
+				var tbody = document.getElementById("tbody");
+				var childList = tbody.childNodes;//所有行
+				for(var j=childList.length-1;j>=0;j--){
+					var trChild = childList[j];
+					tbody.removeChild(trChild);
+				}
+			}
+			
+			//获取子节点,获取父节点,获取相邻节点,删除子节点,创建一个节点,添加子节点,添加文本节点
+		</script>
+	</head>
+	<body>
+		<div align="center">
+		姓名:<input type="text" id="name" /><br /><br />
+		年龄:<input type="text" id="age" /><br /><br />
+		<button onclick="addTr()">添加一行</button>
+		<a href="#" onclick="clearTBody()">清空内容</a>
+		</div>
+		<br />
+		<hr />
+		<table>
+			<thead>
+				<tr>
+					<th width="15%">编号</th>
+					<th width="30%">姓名</th>	
+					<th width="40%">操作</th>	
+					<th width="15%">年龄</th>
+				</tr>
+			</thead>
+			<tbody id="tbody">
+				
+			</tbody>
+		</table>
+		
+	</body>
+</html>

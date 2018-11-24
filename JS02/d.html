@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Google提示</title>
+		<style>
+			#wd{
+				width: 220px;
+			}
+			table{
+				width: 224px;
+				border: 1px gray solid;
+				
+			}
+			
+		</style>
+		<script type="text/javascript">
+			function google(){
+				clearTbody();
+				var wd = document.getElementById("wd");
+				var wdVal = wd.value;
+				
+				var tbody = document.getElementById("tbody");
+				for(var i=1;i<10;i++){
+					var tr,td;
+					td = document.createElement("td");
+					tr = document.createElement("tr");
+					td.innerHTML = "<label onmouseover='ab1(this)' onmouseout='ab2(this)'>"+wdVal+i+"</label>";
+					tr.appendChild(td);
+					tbody.appendChild(tr);
+				}
+				
+			}
+			function ab1(obj){
+				obj.parentNode.style.backgroundColor = "gray";
+			}
+			
+			function ab2(obj){
+				obj.parentNode.style.backgroundColor = "";
+			}
+			
+			function clearTbody(){
+				var tbody = document.getElementById("tbody");
+				var childList = tbody.childNodes;
+				for(var i=childList.length-1;i>=0;i--){
+					tbody.removeChild(childList[i]);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" id="wd" onkeyup="google()"/>
+		<br />
+		<table>
+			<tbody id="tbody">
+				
+			</tbody>
+		</table>
+	</body>
+</html>
