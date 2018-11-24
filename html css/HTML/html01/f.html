@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			表格:table(表格) thead(页眉区域) tbody(正文区域) tfoot(页脚区域) tr(行) td(列) th(列)
+		-->
+		<!--最全版本table-->
+		<table>
+			<thead>
+				<tr>
+					<td>编号</td>
+					<td>姓名</td>
+					<td>年龄</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>张三</td>
+					<td>19</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>李四</td>
+					<td>18</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>王五</td>
+					<td>21</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td>总计</td>
+					<td>归类</td>
+					<td>站位</td>
+				</tr>
+			</tfoot>
+		</table>
+		
+		<!--精简版-->
+		<!--
+			align:位置距向
+		-->
+		<table>
+			<tr align="right">
+				<th>编号</th>
+				<th>姓名</th>
+				<td>年龄</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>张三</td>
+				<td>19</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>李四</td>
+				<td>18</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>王五</td>
+				<td>21</td>
+			</tr>
+		</table>
+		<hr />
+		<!--
+			table中的边框
+		-->
+		<table style="margin: auto;border:1px gray solid;" >
+			<tr height="200">
+				<th width="100" style="border: 1px red solid;">编号</th>
+				<th style="border: 1px red solid;">姓名</th>
+			</tr>
+			<tr>
+				<td style="border: 1px red solid;">1</td>
+				<td style="border: 1px red solid;">张三</td>
+			</tr>
+			<tr>
+				<td style="border: 1px red solid;">2</td>
+				<td style="border: 1px red solid;">李四</td>
+			</tr>
+		</table>
+		<hr />
+		<!--
+			合并单元格:
+			colspan:#  合并列
+			rowspan:#  合并行
+		-->
+		<table style="margin: auto;border:1px gray solid;" width="600" height="400">
+			<tr>
+				<td align="right" style="margin: auto;border:1px gray solid;" >1</td>
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+				<td style="margin: auto;border:1px gray solid;" colspan="2">1</td>
+				
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+			</tr>
+			<tr>
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+			</tr>
+			<tr>
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+				<td style="margin: auto;border:1px gray solid;" rowspan="3">1</td>
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+			</tr>
+			<tr>
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+				
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+			</tr>
+			<tr>
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+				
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+			</tr>
+			<tr>
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+			</tr>
+			<tr>
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+				<td style="margin: auto;border:1px gray solid;" >1</td>
+			</tr>
+		</table>
+		
+		<hr/>
+		<table style="margin: auto;border:1px gray solid;"width="800" height="300">
+			<tr>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;" bgcolor="aqua">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;" colspan="2">&nbsp;</td>
+				
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+			</tr>
+			<tr>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;" rowspan="3">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+			</tr>
+			<tr>
+				<td style="margin: auto;border:1px gray solid;" colspan="2" rowspan="2">&nbsp;</td>
+				
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+			</tr>
+			<tr>
+				
+				
+				<td style="margin: auto;border:1px gray solid;" colspan="4">&nbsp;</td>
+				
+				
+				
+				<td style="margin: auto;border:1px gray solid;" rowspan="3">&nbsp;</td>
+			</tr>
+			<tr>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;" rowspan="3">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				
+			</tr>
+			<tr>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				
+			</tr>
+			<tr>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+				<td style="margin: auto;border:1px gray solid;">&nbsp;</td>
+			</tr>
+		</table>
+		
+		<br />
+		<!--
+			align:距向 可以在table,tr和td th中加入
+			text-align:是table中的一个样式,代表table的文字位置样式
+			align:left,right,center,top,bottom,middle
+		-->
+		<table align="right" style="margin: auto;border:1px gray solid; text-align: right;"width="600" height="400">
+			<tr>
+				<td style="margin: auto;border:1px gray solid;">1</td>
+				<td style="margin: auto;border:1px gray solid;">1</td>
+				<td style="margin: auto;border:1px gray solid;">1</td>
+			</tr>
+			<tr>
+				<td style="margin: auto;border:1px gray solid;">1</td>
+				<td style="margin: auto;border:1px gray solid;">1</td>
+				<td style="margin: auto;border:1px gray solid;">1</td>
+			</tr>
+		</table>
+		
+	</body>
+</html>

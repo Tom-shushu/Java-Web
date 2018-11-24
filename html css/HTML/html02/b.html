@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>简单表单</title>
+	</head>
+	<body>
+		<!--
+			作用为:类似于一张信纸,负责承载被发送内容
+			method:post|get(默认) 发送方式
+			action:去哪里
+			target:打开方式
+			enctype:表单类型application/x-www-form-urlencoded(默认)|multipart/form-data
+		-->
+		<!--form表单的子标签必须有name,如果没有name属性,则内容不会发送出去-->
+		<form method="get" action="a.html">
+			<!--文本框(默认情况)-->
+			<input type="text" name="userName" value="初始化的值" /><br />
+			<!--密码框-->
+			<input type="password" name="userPass" value="" /><br />
+			<!--单选按钮,多个单选按钮按照name来划分-->
+			<input type="radio" name="userSex" value="1" checked="true" />男
+			<input type="radio" name="userSex" value="0" />女 <br />
+			<!--复选框,多个复选框按照name来划分-->
+			<input type="checkbox" name="userAddress" value="xa" checked="true" />西安
+			<input type="checkbox" name="userAddress" value="bj" />宝鸡
+			<input type="checkbox" name="userAddress" value="wn" checked="true" />渭南
+			<br />	
+			<!--文件域,负责上传文件的选择框,必须要求enctype="上传表单",必须是post请求-->
+			<input type="file" name="userImage" /><br />
+			<!--下拉菜单-->
+			<select name="userPrev">
+				<!--option:下拉菜单子选项 selected默认被选中的子选项-->
+				<option value="1">陕西省</option>
+				<option value="2">山西省</option>
+				<option value="3" selected>湖南省</option>
+				<option value="4">湖北省</option>
+			</select><br />
+			<!--多行文本框(文本域) rows:行数(高) cols:列数(宽)-->
+			<textarea name="userDesc" rows="5" cols="18"></textarea>
+			<!--隐藏域,只记三个属性-->
+			<input type="hidden" name="userId" value="1" /><br />
+			<!--普通按钮,一般给JavaScript使用-->
+			<input type="button" value="普通按钮" />
+			<!--提交按钮,一般给Java使用,将表单内容发送出去-->
+			<input type="submit" value="提交按钮" />
+			<!--图片形式的提交按钮,等同于submit-->
+			<input type="image" src="img/1.gif" width="60" height="30" />
+			<!--重置按钮-->
+			<input type="reset" value="重置按钮" />
+		</form>
+		
+	</body>
+</html>

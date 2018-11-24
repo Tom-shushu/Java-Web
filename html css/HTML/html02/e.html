@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Input标签</title>
+	</head>
+	<body>
+		<form action="#">
+			<!--multiple:多选 size:高度-->
+			<select name="select" multiple size="10">
+				<option value="1">陕西省</option>
+				<option value="2">山西省</option>
+				<option value="3">湖南省</option>
+				<option value="4">湖北省</option>
+				<option value="5">安徽省</option>
+				<option value="6">江西省</option>
+				<option value="7">江苏省</option>
+			</select>
+			<br />
+			<!--autofocus:页面加载时,获取焦点-->
+			<input type="text" name="name" list="mlist" autofocus/>
+			<datalist id="mlist">
+				<option value="陕西省"></option>
+				<option value="山西省"></option>
+				<option value="湖南省"></option>
+				<option value="湖北省"></option>
+			</datalist>
+		</form>
+	</body>
+</html>
