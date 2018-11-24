@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>第一个jQuery页面</title>
+		
+		<!--引入JQuery的JS文件,必须在其他使用的JavaScript之前-->
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+		<script>
+			
+			$(document).ready(function(){
+				alert("Hello,World!");
+			});			
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
+<!--
+区别:
+jQuery:$(document).ready():页面主体加载完执行
+JavaScript:window.onload:全加载完后执行
+-->
