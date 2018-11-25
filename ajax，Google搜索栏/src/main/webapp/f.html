@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	
+$(document).ready(function() {
+	//$.getJSON("URL",["param"],["回调"]);
+
+	$.getJSON("json2", function(result) {
+		$.each(result,function(i,r){
+			alert(r.name);
+		});
+	});
+
+})
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

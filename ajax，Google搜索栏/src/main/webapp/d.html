@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		//$.getJSON("URL",["param"],["回调"]);
+
+		$.getJSON("json", {"id" : "1"}, function(result) {
+			// 如果返回的内容是一条数据,则直接result.field就行了
+			alert(result.id+".."+result.name+".."+result.age+".."+result.address);
+		});
+
+	})
+</script>
+
+
+
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 引入进来easyUI的相关内容 -->
+<link rel="stylesheet" type="text/css" href="jquery-easyui-1.6.3/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="jquery-easyui-1.6.3/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="jquery-easyui-1.6.3/demo/demo.css">
+<script type="text/javascript" src="jquery-easyui-1.6.3/jquery.min.js"></script>
+<script type="text/javascript" src="jquery-easyui-1.6.3/jquery.easyui.min.js"></script>
+</head>
+<body>
+
+	
+	<table class="easyui-datagrid" title="Basic DataGrid" style="width:360px;height:250px"
+			data-options="singleSelect:true,collapsible:true,url:'json2',method:'get'">
+		<thead>
+			<tr>
+				<th data-options="field:'id',width:80">Item ID</th>
+				<th data-options="field:'name',width:100">Product</th>
+				<th data-options="field:'age',width:80,align:'right'">List Price</th>
+				<th data-options="field:'address',width:80,align:'right'">Unit Cost</th>
+			</tr>
+		</thead>
+	</table>
+</body>
+</html>

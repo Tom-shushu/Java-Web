@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	table{
+		margin: 0px;
+		border: 1px gray solid;
+		width: 224px;
+	}
+	input{
+		width:220px;
+	}
+</style>
+
+
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript">
+	function ajaxSend(){
+		$("#tbody").empty();
+		var val = $("#wd").val();
+		$.get("google",{"wd":val},function(data){
+			//这里是回调内容
+			var list = data.split("%");
+			for(var i=0;i<list.length;i++){
+				var item = list[i];
+				$("#tbody").append("<tr><td>"+item+"</td></tr>");
+			}
+		});
+	}
+	
+</script>
+
+</head>
+<body>
+	<input type="text" id="wd" onkeyup="ajaxSend()"/>
+	<br/>
+	<table>
+		<tbody id="tbody"></tbody>
+	</table>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+	function abc(){
+		// 第一步:创建XMLHTTPRequest对象
+		var ajax = new XMLHttpRequest();
+		
+		// 第四步:回调,当CGI返回内容时,执行回调函数,当前这个回调函数是一个匿名函数
+		ajax.onreadystatechange = function(){
+			// 这里需要判断 状态是否是4,回应是否是200,只有同时满足时,回调成功
+			if(ajax.readyState==4&&ajax.status==200){
+				var data1 = ajax.responseText;
+				alert(data1);
+			}
+		}
+		// 第二步:打开请求连接
+		ajax.open("get","yuansheng?name=admin",true);
+		// 第三步:发送参数,只能在POST请求中书写
+		ajax.send();
+	}
+</script>
+
+
+</head>
+<body onload="abc()">
+
+</body>
+</html>

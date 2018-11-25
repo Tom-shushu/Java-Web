@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>AJAX演示</title>
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		var num = Math.floor(Math.random()*10);
+		$("#s1").html(num);
+		//通过AJAX将浏览器的内容送到服务器中去,都是建立在jQuery的基础上
+		//$.get(URL,[参数],[回调函数]);	
+		//$.post(URL,[参数],[回调函数]);
+		$("#send").bind("click",function(){
+			var name = $("#name").val();
+			//$.get("one",{"name":name});
+			
+			var url = "one";
+			$.get(url,{"name":name},function(data){
+				alert(data);
+			});
+			
+		})
+	})
+</script>
+</head>
+<body>
+	<span id="s1"></span>
+	<hr/>
+	<input type="text" id="name" />
+	<input type="button" value="Send" id="send" />
+</body>
+</html>
+<!-- 
+	从前台页面向后台程序传输内容
+	1.form表单
+	2.超链接 ?
+	页面跳转了
+
+	今天给大家带来一种不跳转页面的方式
+-->
