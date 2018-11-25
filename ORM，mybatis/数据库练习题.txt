@@ -1,0 +1,228 @@
+	1. 关系数据库的实体完整性规则规定基本关系的   主码    都不能取   空    。　　
+	2.SQL SELECT语句为了将查询结果存放到临时表中应该使用______短语。
+　3. 多栏报表的栏目数可以通过______来设置。
+　4. 若有关系模式R(A，B，C)和S(C，D，E)，SQL语句  SELECT A, D FROM R, S WHERE R.C=S.C AND E = '80'   对应的关系代数表达式是
+	______　
+　5. 数据库系统的核心是___数据管理系统___。
+　　6. 查询设计器中的"联接"选项卡，可以控制___连接类型__选择。
+
+　　7. 设有图书管理数据库：
+
+　　图书(总编号C(6),分类号C(8),书名C(16),作者C(6),出版单位C(20),单价N(6,2))
+
+　　读者(借书证号C(4),单位C(8),姓名C(6),性别C(2),职称C(6),地址C(20))
+
+　　借阅(借书证号C(4),总编号C(6),借书日期D(8))
+
+　　用SQL的CREATE命令建立借阅表(字段顺序要相同)，请对下面的SQL语句填空：
+
+　　______
+
+　　8. 设有图书管理数据库：
+
+　　图书(总编号C(6),分类号C(8),书名C(16),作者C(6),出版单位C(20),单价N(6,2))
+
+　　读者(借书证号C(4),单位C(8),姓名C(6),性别C(2),职称C(6),地址C(20))
+
+　　借阅(借书证号C(4),总编号C(6),借书日期D(8))
+
+　　对图书管理数据库，查询由"清华大学出版社"或"电子工业出版社"出版，并且单价不超出20元的书名。请对下面的SQL语句填空：
+
+　　SELECT 书名,出版单位,单价 FROM 图书;
+
+　　WHERE_______ AND;
+
+　　_______
+
+　　9. 设有图书管理数据库：
+
+　　图书(总编号C(6),分类号C(8),书名C(16),作者C(6),出版单位C(20),单价N(6,2))
+
+　　读者(借书证号C(4),单位C(8),姓名C(6),性别C(2),职称C(6),地址C(20))
+
+　　借阅(借书证号C(4),总编号C(6),借书日期D(8))
+
+　　对图书管理数据库，求共借出多少种图书。请对下面的SQL语句填空：
+
+　　SELECT __ _____ FROM 借阅
+
+	10.在关系A（S，SN，D）和B（D，CN，NM）中，A的主码是S，B的主码是D，则D
+	在A中称为____。
+	
+	11.存在一个等待事务集{T0，T1，?，Tn}，其中T0正等待被
+	T1锁住的数据项，T1正等待 被T2锁住的数据项，Tn-1正等待被Tn锁住的数据项，且Tn正等待被
+	T0锁住的数据项，这种情形称为________
+Sql语句部分：
+一．有以下几张表及表结构
+Student(Sid,Sname,Sage,Ssex) 学生表
+Course(Cid,Cname,Tid) 课程表
+SC(Sid,Cid,Score) 成绩表
+Teacher(Tid,Tname) 教师表
+题目：
+1.查询“某1”课程比“某2”课程成绩高的所有学生的学号；
+select a.Sid from(select Sid,Score from SC where Cid=1) a,  (select Sid,Score from SC where Cid=3) b where a.Score>b.Score and a.Sid = b.Sid;
+2.查询平均成绩大于60分的同学的学号和平均成绩；
+select  Sid ,avg(Score)from SC group by Sid having avg(Score)>60;
+3.查询所有同学的学号、姓名、选课数、总成绩
+select Student.Sid,Student.Sname,count(SC.Cid) ,sum(Score)from Student left outer join SC on Student.Sid=SC.Cid group by Student.Sid,Sname; 
+4.查询姓“李”的老师的个数；
+select count(Teacher.Tid)from Teacher where Teacher.Tname like "李";
+5.查询没学过“叶平”老师课的同学的学号、姓名；
+select Student.Sid,Student.Sname from Student where Sid not in(select  distinct(SC.Sid) from SC,Course,Teacher where SC.Cid = Course.Cid and Teacher.Tid=Course.Tid and Teacher.Tname = '和平' );
+distinct:去重复
+6.查询学过“```”并且也学过编号“```”课程的同学的学号、姓名；
+select a.Sid,a.Sname from(select Student.Sname,Student.Sid from Student,Course,SC where Cname='数学'and SC.Sia=Student.Sid and SC.Cid = Course.Cid) a ,
+                                       (select Student.Sname,Student.Sid from Student,Course,SC where Cname='毛概' and SC.Sid = Student.Sid and SC.Cid=Course.Cid) b where a.Sid=b.Sid;
+7.查询学过“叶平”老师所教的所有课的同学的学号、姓名；
+//select a.Sid,a.Sname from(select Student.Sid,Student.Sname from Student,Teacher,Course,SC where Teacher.Tname='叶平'and Teacher.Tid=Course.Tid and Course.Cid=SC.Cid andStudent.Sid=SC.Sid)a;
+                                  
+select  Sid,Sname from Student where Sid in (select Sid from SC,Course,Teacher where SC.Cid=Course.Cid and Teacher.Tid=Course.Tid and Teacher.Tname = '叶平' grop by Sid having 
+count (SC.Cid)=(select count(Cid) from Course,Teacher where Teacher.Tid = Course.Tid and Tname=‘叶平))                                     
+8.查询课程编号“”的成绩比课程编号“”课程低的所有同学的学号、姓名；
+select Sid,Sname from(select Student.Sid,Student.Sname,Score，
+(select Score from SC SC_2 where SC_2.Sid=Student.Sid and SC_2.Cid=1) Score2 from Student,SC
+where Student.Sid=SC.Sid and Cid=1 )S_2 where Score2<Score;
+9.查询所有课程成绩小于60分的同学的学号、姓名；
+SELECT sid,Sname FROM Student WHERE sid not in (SELECT Student.sid FROM Student,SC WHERE Student.sid=SC.sid AND score>60); 
+10.查询没有学全所有课的同学的学号、姓名；
+SELECT Student.sid,Student.Sname  FROM Student,SC  
+WHERE Student.sid=SC.sid GROUP BY  Student.sid,Student.Sname having count(cid) <(SELECT count(cid) FROM Course);
+11.查询至少有一门课与学号为“”的同学所学相同的同学的学号和姓名；
+
+12.查询至少学过学号为“”同学所有一门课的其他同学学号和姓名；
+
+13.把“SC”表中“叶平”老师教的课的成绩都更改为此课程的平均成绩；
+update sc set score=(select avg(score) from sc,course,teacher where course.cid=sc.cid and course.tid=teacher.tid and teacher.tname='杨巍巍')
+14.查询和“”号的同学学习的课程完全相同的其他同学学号和姓名；
+SELECT sid FROM SC WHERE cid in (SELECT cid FROM SC WHERE sid=6) GROUP BY sid having count(*)=(SELECT count(*) FROM SC WHERE sid=6); 
+15.删除学习“叶平”老师课的SC表记录；?
+delete from sc s where s.cid in (select c.cid from teacher t,course c where t.tid = c.tid and tname='叶平')
+16.向SC表中插入一些记录，这些记录要求符合以下条件：没有上过编号“”课程的同学学号、课程的平均成绩；
+Insert into SC SELECT sid,2,(SELECT avg(score) FROM SC WHERE cid=2) FROM Student WHERE sid not in (SELECT sid FROM SC WHERE cid=2); 
+17.按平均成绩从高到低显示所有学生的“数据库”、“企业管理”、“英语”三门的课程成绩，按如下形式显示：学生ID,,数据库,企业管理,英语,有效课程数,有效平均分；
+18.查询各科成绩最高和最低的分：以如下形式显示：课程ID，最高分，最低分；
+19.按各科平均成绩从低到高和及格率的百分数从高到低顺序
+20.查询每门课程被选修的学生数
+select sc.cid,count(sc.sid) from sc,course where sc.cid=course.cid group by sc.cid
+21.查询出只选修了一门课程的全部学生的学号和姓名
+SELECT SC.sid,Student.Sname,count(cid) AS 选课数 FROM SC ,Student  
+WHERE SC.sid=Student.sid GROUP BY SC.sid ,Student.Sname having count(cid)=1;
+22.查询每门课程的平均成绩，结果按平均成绩升序排列，平均成绩相同时，按课程号降序排列
+SELECT Cid,Avg(score) FROM SC GROUP BY cid ORDER BY Avg(score),cid DESC ;
+23.查询不及格的课程，并按课程号从大到小排列?
+SELECT cid,sid FROM sc WHERE score <60 ORDER BY cid 
+24.查询课程编号为且课程成绩在60分以上的学生的学号和姓名；
+select student.sid,student.sname from sc,student where sc.cid=1 and sc.score>60 and sc.sid=student.sid
+25.查询选修“叶平”老师所授课程的学生中，成绩最高的学生姓名及其成绩
+select student.sname,sc.score from sc,student,teacher,course c where teacher.tname='李子'
+and teacher.tid=c.tid and c.cid=sc.cid and sc.sid=student.sid and sc.score=(select max(score)from sc where sc.cid=c.cid)
+26.查询各个课程及相应的选修人数
+select sc.cid ,count(sc.sid)from sc,student where sc.sid=student.sid group by sc.cid 
+27.查询每门功成绩最好的前两名
+28.统计每门课程的学生选修人数（超过人的课程才统计）。要求输出课程号和选修人数，查询结果按人数降序排列，查询结果按人数降序排列，若人数相同，按课程号升序排列
+select sc.cid,count(sc.cid)from sc,course where sc.cid=course.cid group by sc.cid  order by sc.cid desc
+29.检索至少选修两门课程的学生学号
+SELECT sid FROM  sc group  by  sid having  count(*)  >  =  2  
+30.查询没学过“叶平”老师讲授的任一门课程的学生姓名
+select distinct sid from sc where sid not in(select sc.sid from sc,course,teacher where sc.cid=course.cid and course.tid=teacher.tid and 
+teacher.tname='杨巍巍')
+31.查询两门以上不及格课程的同学的学号及其平均成绩
+32.检索“”课程分数小于90，按分数降序排列的同学学号
+select sc.sid from sc,course where sc.cid=course.cid and course.cname='java' and sc.score<90
+33.删除“”同学的“”课程的成绩 
+delete from sc where sid=1 and cid=1 
+二．下面的题目和上面的表没有任何关系
+34、列出全部学生的信息。
+35、列出软件专业全部学生的学号及姓名。
+36、列出所有必修课的课号。
+37、求1号课成绩大于80分的学生的学号及成绩，并按成绩由高到低列出。
+38、列出非软件专业学生的名单。
+39、查询成绩在70~80分之间的学生选课得分情况
+不在此范围内的查询：（注意写出和以下语句等价的语句）
+40、列出选修1号课或3号课的全体学生的学号和成绩。  
+简答题
+(一).什么是事务？事务的提交和回滚什么意思？ 
+答：
+a>事务是应用程序中一系列严密的操作，所有操作必须成功完成，否则在每个操作中所作的所有更改都会被撤消。也就是事务具有原子性，一个事务中的一系列的操作要么全部成功，要么一个都不做。 
+事务具有四个特征：原子性（ Atomicity ）、一致性（ Consistency ）、隔离性（Isolation ）和持续性（ Durability ）。
+事务是为了保证对同一数据表操作的一致性。
+即多条语句放在事务中执行的时候，要么一起成功，要么全不成功。我的理解：数据库中的事务就是需要捆绑在一起执行的操作集合，他们应不能被部分的完成。
+b>事务提交是提交事务的所有操作：具体来说就是将事务中所有对数据库的更新写回到磁盘上的物理数据库中，事务正常结束；
+c>事务回滚是数据库返回到事务开始的状态：事务在运行过程中发生某种故障，事务不能继续执行，系统将事务中对数据库的所有已完成的更新操作全部撤销，使数据库回滚到事务开始时的状态。 
+（二）、sql语句应该考虑哪些安全性？()https://www.cnblogs.com/usa007lhy/p/5976673.html
+（1）少使用root账户，应该为不同的动作分配不同的账户；
+（2）sql执行出错后，不能把数据库中显示的出错信息，直接展示给用户。防止泄露服务器和数据库相关信息；
+（3）防止sql注入，对特殊字符进行转义、过滤或者使用预编译的sql语句绑定变量。
+（三）、简单描述MySQL中，索引，主键，唯一索引，联合索引的区别，对数据库的性能有什么影响。
+--索引是一种特殊的文件（InnoDB数据表上的索引是表空间的一个组成部分），它们包含着对数据表里所有记录的引用指针。
+--普通索引（由关键字KEY或INDEX定义的索引）的唯一任务是加快对数据的访问速度。
+--普通索引：允许被索引的数据列包含重复的值，如果能确定某个数据列只包含彼此各不相同的值，在为这个数据索引创建索引的时候就应该用关键字UNIQE把它定义为一个唯一所以，唯一索引可以保证数据记录的唯一性。
+--主键：一种特殊的唯一索引，在一张表中只能定义一个主键索引，逐渐用于唯一标识一条记录，是用关键字PRIMARY KEY来创建。
+--索引可以覆盖多个数据列，如像INDEX索引，这就是联合索引。
+--索引可以极大的提高数据的查询速度，但是会降低插入删除更新表的速度，因为在执行这些写操作时，还要操作索引文件。	
+（四）、一张表,里面有ID自增主键,当insert了17条记录之后,删除了第15,16,17条记录,再把Mysql重启,再insert一条记录,这条记录的ID是18还是15 ？
+如果表的类型是MyISAM，那么是18。 
+因为MyISAM表会把自增主键的最大ID记录到数据文件里，重启MySQL自增主键的最大ID也不会丢失。 
+如果表的类型是InnoDB，那么是15。 
+InnoDB表只是把自增主键的最大ID记录到内存中，所以重启数据库或者是对表进行OPTIMIZE操作，都会导致最大ID丢失。
+（五）、请简述项目中优化sql语句执行效率的方法，从哪些方面。sql语句性能如何分析？(https://www.cnblogs.com/coderchuanyu/p/4065434.html)
+(1).尽量选择较小的列
+(2).将where中用的比较频繁的字段建立索引
+(3).select子句中避免使用‘*’
+(4).避免在索引列上使用计算，not，in和<>等操作
+(5).当只需要一行数据的时候使用limit 1
+(6).保证表单数据不超过200w，适时分割表
+　　针对查询较慢的语句，可以使用explain来分析该语句具体的执行情况
+（六）、MyISAM和InnoDB各有哪些特性？分别适用在怎样的场景下？(https://blog.csdn.net/aaa123524457/article/details/54375341)
+ 主要区别：
+    1).MyISAM是非事务安全型的，而InnoDB是事务安全型的。
+    2).MyISAM锁的粒度是表级，而InnoDB支持行级锁定。
+    3).MyISAM支持全文类型索引，而InnoDB不支持全文索引。
+    4).MyISAM相对简单，所以在效率上要优于InnoDB，小型应用可以考虑使用MyISAM。
+    5).MyISAM表是保存成文件的形式，在跨平台的数据转移中使用MyISAM存储会省去不少的麻烦。
+    6).InnoDB表比MyISAM表更安全，可以在保证数据不会丢失的情况下，切换非事务表到事务表（alter table tablename type=innodb）。
+应用场景：
+    1).MyISAM管理非事务表。它提供高速存储和检索，以及全文搜索能力。如果应用中需要执行大量的SELECT查询，那么MyISAM是更好的选择。
+    2).InnoDB用于事务处理应用程序，具有众多特性，包括ACID事务支持。如果应用中需要执行大量的INSERT或UPDATE操作，则应该使用InnoDB，这样可以提高多用户并发操作的性能。
+（七）、在创建和使用索引时，有哪些要注意的地方，有什么规则？
+  
+A.：使用索引的注意事项
+使用索引时，有以下一些技巧和注意事项：
+1.索引不会包含有NULL值的列
+只要列中包含有NULL值都将不会被包含在索引中，复合索引中只要有一列含有NULL值，那么这一列对于此复合索引就是无效的。所以我们在数据库设计时不要让字段的默认值为NULL。
+2.使用短索引
+对串列进行索引，如果可能应该指定一个前缀长度。例如，如果有一个CHAR(255)的列，如果在前10个或20个字符内，多数值是惟一的，那么就不要对整个列进行索引。短索引不仅可以提高查询速度而且可以节省磁盘空间和I/O操作。
+3.索引列排序
+MySQL查询只使用一个索引，因此如果where子句中已经使用了索引的话，那么order by中的列是不会使用索引的。因此数据库默认排序可以符合要求的情况下不要使用排序操作；尽量不要包含多个列的排序，如果需要最好给这些列创建复合索引。
+4.like语句操作
+一般情况下不鼓励使用like操作，如果非使用不可，如何使用也是一个问题。like “%aaa%” 不会使用索引而like “aaa%”可以使用索引。
+5.不要在列上进行运算
+select * from users where YEAR(adddate)<2007;
+将在每个行上进行运算，这将导致索引失效而进行全表扫描，因此我们可以改成:
+select * from users where adddate<‘2007-01-01';
+6.不使用NOT IN和<>操作。
+B.：sql优化原则
+常见的简化规则如下：
+1).不要有超过5个以上的表连接（JOIN）
+2).考虑使用临时表或表变量存放中间结果。
+3).少用子查询
+4).视图嵌套不要过深,一般视图嵌套不要超过2个为宜。
+5).连接的表越多，其编译的时间和连接的开销也越大，性能越不好控制。
+6).最好是把连接拆开成较小的几个部分逐个顺序执行。
+7).优先执行那些能够大量减少结果的连接。
+8).拆分的好处不仅仅是减少SQL Server优化的时间，更使得SQL语句能够以你可以预测的方式和顺序执行。
+
+(八)，请简洁地描述下MySQL中InnoDB支持的四种事务隔离级别名称，以及逐级之间的区别？
+1.InnoDB支持事物，而MyISAM不支持事物
+2.InnoDB支持行级锁，而MyISAM支持表级锁
+3.InnoDB支持MVCC, 而MyISAM不支持
+4.InnoDB支持外键，而MyISAM不支持
+5.InnoDB不支持全文索引，而MyISAM支持。
+6.InnoDB不能通过直接拷贝表文件的方法拷贝表到另外一台机器， myisam 支持
+7.InnoDB表支持多种行格式， myisam 不支持
+8.InnoDB是索引组织表， myisam 是堆表
+
+
+
+	
+	

@@ -1,0 +1,35 @@
+1.显示图书和作者信息，显示字段：图书名称、作者姓名
+2.显示出版社出版的图书情况，显示字段：出版社名称、图书名称
+3.显示出版社出版的图书情况和作者情况，显示字段:出版社名称、图书名称、作者姓名
+4.显示某位读者借阅某本图书的情况，显示字段：读者姓名、图书名称、借阅时间、还书时间
+5.显示某位读者的未还书情况，显示字段：读者姓名、图书名称、借阅时间、还书时间
+6.显示某位读者在某个月的借书情况，显示字段：读者信息、图书名称、借阅时间、还书时间
+7.显示某本图书的库存情况，显示字段：图书名称、库存量
+8.分组统计每个出版社的图书总量，显示字段：出版社名称、图书总量
+9.分组统计图书管理系统中不同用户权限的用户数量，显示字段：角色、用户人数
+10.计算图书已借阅数量，显示字段：图书名称、已借阅数量
+
+
+1.什么是ORM(Object Relational Mapping)?谈谈你对ORM的理解?
+2.MyBatis中如何实现ORM方式?
+3.id和result的区别?
+
+
+
+
+<resultMap type="com.manytoone.bean.EmpBean" id="fun1">
+<id property="empNo" column="empNo"/>
+<result property="eName" column="eName"/>
+<result property="job" column="job"/>
+<result property="mgr" column="mgr"/>
+<result property="hireDate" column="hireDate"/>
+<result property="sal" column="sal"/>
+<result property="comm" column="comm"/>
+//模拟多对一
+<association property="db" javaType="com.manytoone.bean.DeptBean"  column="deptno">
+<id property="deptNo" column="deptNo"/>
+<result property="dName" column="dname"/>
+<result property="loc" column="loc"/>
+</association>
+</resultMap>
+

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.manytoone.mapper.EmpMapper">
+	<!-- 可以手动指定哪个列和哪个属性绑定 -->
+	<resultMap type="com.manytoone.bean.EmpBean" id="abc">
+		<!-- 指定了empNo这个列和empNo这个属性绑定 -->
+		<id property="empNo" column="empNo" />
+		<result property="ename" column="ename" />
+		<result property="jobs" column="job" />
+		<result property="salary" column="sal" />
+		<!-- 模拟多对一效果 员工和部门多对一(db) property:属性名 javaType:数据类型 column:外键(关系键) -->
+		<association property="db" column="deptno"
+			javaType="com.manytoone.bean.DeptBean">
+			<id property="deptNo" column="deptNo" />
+			<result property="dname" column="dname" />
+			<result property="loc" column="loc" />
+		</association>
+		<association property="eb" javaType="com.manytoone.bean.EmpBean"
+			column="mgr">
+			<id property="empNo" column="mgrempno" />
+			<result property="ename" column="mgrename" />
+			<result property="jobs" column="mgrjob" />
+			<result property="hireDate" column="mgrhiredate" />
+			<result property="salary" column="mgrsal" />
+			<result property="comm" column="mgrcomm" />
+		</association>
+	</resultMap>
+
+	<!-- 查询所有员工信息,并且显示员工所属部门信息和他上司信息 -->
+	<select id="findAllEmp" resultMap="abc">
+		select
+		e1.*,d.*,
+		e2.empno as mgrempno,
+		e2.ename as mgrename,
+		e2.job as mgrjob,
+		e2.hiredate as mgrhiredate,
+		e2.sal as mgrsal,
+		e2.comm as mgrcomm
+		from
+		lisi.emp e1,lisi.dept d,lisi.emp e2
+		where
+		e1.deptno=d.deptno and e1.mgr=e2.empno
+	</select>
+	<!-- 对于每个雇员，显示其加入公司的天数 -->
+	<resultMap type="com.manytoone.bean.EmpBean" id="abc2">
+		<id property="empNo" column="empno" />
+		<result property="ename" column="ename" />
+		<result property="days" column="days" />
+	</resultMap>
+	<select id="findEmp2" resultMap="abc2">
+		select empno,
+		ename,round((sysdate-hiredate)) as days from lisi.emp
+	</select>
+
+	<!-- 20：显示所有雇员的姓名和加入公司的年份和月份， 按雇员受雇日所在月排序，并将最早年份的项目排在最前面 -->
+	
+	<resultMap type="com.manytoone.bean.EmpBean" id="abc3">
+		<id property="empNo" column="empno" />
+		<result property="ename" column="ename" />
+		<result property="years" column="years"/>
+		<result property="mons" column="mons"/>
+	</resultMap>
+	<select id="findEmp3" resultMap="abc3">
+		select empno, ename,to_char(hiredate,'yyyy') as years,to_char(hiredate,'mm')as mons
+		from lisi.emp
+		order by years,mons
+	</select>
+</mapper>

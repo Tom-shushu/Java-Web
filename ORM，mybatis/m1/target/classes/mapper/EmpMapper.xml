@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.EmpMapper">
+	<!-- 通过主键获取行信息 
+		id:方法名(唯一,不能重复)
+		resultType:返回结果类型
+		parameterType:参数类型
+		#{empNo}:代表参数,其中empNo是参数名
+	 -->
+	<select id="findEmpByNo" resultType="bean.EmpBean" 
+		parameterType="java.lang.Integer">
+		select * from lisi.Emp where empNo=#{empNo}
+	</select>
+	
+	<insert id="addEmp" parameterType="bean.EmpBean">
+		insert into lisi.Emp 
+			values(#{empNo},#{eName},#{job},#{mgr},#{hireDate},#{sal},#{comm},#{deptNo})
+	</insert>
+	
+	<update id="updateEmp" parameterType="bean.EmpBean">
+		update lisi.Emp set ename=#{eName},job=#{job},mgr=#{mgr},hireDate=#{hireDate},
+			sal=#{sal},comm=#{comm},deptNo=#{deptNo}
+			where empNo = #{empNo}
+	</update>
+	
+	<delete id="deleteEmp" parameterType="java.lang.Integer">
+		delete from lisi.Emp where empNo=#{empNo}
+	</delete>
+	
+	<select id="findAllEmp" resultType="bean.EmpBean">
+		select * from lisi.Emp
+	</select>
+</mapper>

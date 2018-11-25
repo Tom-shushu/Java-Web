@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.EmpMapper">
+	<select id="findEmp" resultType="bean.EmpBean">
+		select * from lisi.Emp 
+		<!-- 如果条件至少一个成立,添加字符串where 并且忽略第一个and|or -->
+		<trim prefix="where" prefixOverrides="and|or">
+			<if test="job!=null">
+			 	and job=#{job}
+			</if>
+			<if test="sal!=null">
+				and sal>#{sal}
+			</if>
+		</trim>
+	</select>
+	
+	<update id="updateEmp" parameterType="bean.EmpBean">
+		update lisi.Emp 
+		<trim prefix="set" suffixOverrides=",">
+			<if test="ename!=null">
+				ename=#{ename},
+			</if>
+			<if test="job!=null">
+				job=#{job},
+			</if>
+			<if test="mgr!=null">
+				mgr=#{mgr},
+			</if>
+		</trim>
+		where 
+		empNo=#{empNo}
+		
+	</update>
+	
+	<delete id="deleteEmp" parameterType="bean.EmpBean">
+		delete from lisi.Emp
+		where 
+		<choose>
+			<when test="sal>999.0">
+				empno=#{empNo}
+			</when>
+			<otherwise>
+				mgr=#{empNo}
+			</otherwise>
+		</choose>
+	</delete>
+	
+	<select id="findEmpByJob1" resultType="bean.EmpBean">
+		select * from lisi.emp where job in 
+		<foreach collection="array" item="jobs" open="(" close=")" separator=",">
+			#{jobs}
+		</foreach>
+	</select>
+	
+	<select id="findEmpByJob2" resultType="bean.EmpBean">
+		select * from lisi.emp where job in 
+		<foreach collection="list" item="jobs" open="(" close=")" separator=",">
+			#{jobs}
+		</foreach>
+	</select>
+	
+	<select id="param1" parameterType="bean.EmpBean" resultType="bean.EmpBean">
+		select * from lisi.emp where ename=#{ename} and sal>#{sal}
+	</select>
+	
+	<select id="param2" resultType="bean.EmpBean">
+		select * from lisi.emp where ename=#{a} and sal>#{b}
+	</select>
+	
+</mapper>
+
+
+
+
+
