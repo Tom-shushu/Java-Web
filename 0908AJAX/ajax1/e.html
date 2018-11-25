@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>e.html</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  	<script type="text/javascript" src="js/jquery.min.js"></script>
+  	<!-- 第五种形式原生JavaScript形式 -->
+  	<script type="text/javascript">
+  	
+  		$(document).ready(function(){
+  			
+  			
+  			//第一步：生成ajax对象
+  			var ajax = new XMLHttpRequest();//这个适用于火狐、IE7+、谷歌等
+  			//第四步：回调函数
+  			ajax.onreadystatechange = function(){
+  				//判断是否回调成功了！！！
+  				if(ajax.status==200&&ajax.readyState==4){
+  					var data = ajax.responseText;
+  					$("span").html(data);
+  				}
+  			};
+  			//第二步：打开请求通道，需要提供至少3个参数，Url,method,async
+  			ajax.open("post", "js?name=张三&age=19", true);
+  			//第三步：发送请求
+  			ajax.send();
+  			
+  		})	
+  	
+  	</script>
+  	
+  </head>
+  
+  <body>
+  	
+  	<span></span>
+  	
+  </body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>AJAX 效果的CRUD</title>
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	var index = 1;
+	// 这个函数是当页面被加载时,执行第一页的内容显示
+	$(document).ready(function(){
+		
+		$(".c1").bind("click",function(){
+			var h = $(this).html();
+			$.ajax({
+				async:true,
+				url:'user',
+				data:{"type":"order","fieldName":h,"page":"1"},
+				success:function(data){
+					$("#tbody").empty();
+					var all = data.split(".");
+					$("#showPage").html(all[1]);
+					var list = all[0].split("%");
+					index = 1;
+					for(var i=0;i<list.length;i++){
+						var ui = list[i];
+						var u = ui.split(",");
+						var str = "<tr>";
+						str+="<td>"+(index)+"</td>";
+						str+="<td>"+u[0]+"</td>";
+						str+="<td>"+u[1]+"</td>";
+						str+="<td>"+u[2]+"</td>";
+						str+="<td>"+u[3]+"</td>";
+						str+="<td id='mtd"+u[4]+"'><a href='javascript:deleteUser("+u[4]+")'>删除</a></td>";
+						str+="</tr>";
+						index++;
+						$("#tbody").append(str);
+					}
+					
+				}
+			})
+		});
+		
+		$.ajax({
+			async:true,
+			url:'user',
+			data:{"type":"find","page":"1"},
+			success:function(data){
+				var all = data.split(".");
+				$("#showPage").html(all[1]);
+				var list = all[0].split("%");
+				for(var i=0;i<list.length;i++){
+					var ui = list[i];
+					var u = ui.split(",");
+					var str = "<tr>";
+					str+="<td>"+(index)+"</td>";
+					str+="<td>"+u[0]+"</td>";
+					str+="<td>"+u[1]+"</td>";
+					str+="<td>"+u[2]+"</td>";
+					str+="<td>"+u[3]+"</td>";
+					str+="<td id='mtd"+u[4]+"'><a href='javascript:deleteUser("+u[4]+")'>删除</a></td>";
+					str+="</tr>";
+					index++;
+					$("#tbody").append(str);
+				}
+				
+			}
+		});
+	})
+
+	function selectPage(nowPage){
+		$.ajax({
+			async:true,
+			url:'user',
+			data:{"type":"find","page":nowPage},
+			success:function(data){
+				$("#tbody").empty();
+				var all = data.split(".");
+				$("#showPage").html(all[1]);
+				var list = all[0].split("%");
+				index = 1;
+				for(var i=0;i<list.length;i++){
+					var ui = list[i];
+					var u = ui.split(",");
+					var str = "<tr>";
+					str+="<td>"+(index)+"</td>";
+					str+="<td>"+u[0]+"</td>";
+					str+="<td>"+u[1]+"</td>";
+					str+="<td>"+u[2]+"</td>";
+					str+="<td>"+u[3]+"</td>";
+					str+="<td>删除 修改</td>";
+					str+="</tr>";
+					index++;
+					$("#tbody").append(str);
+				}
+			}
+		})
+	}
+
+	function changeWd(){
+		var wd = $("#wd").val();
+		$.ajax({
+			async:true,
+			url:'user',
+			method:'get',
+			data:{"type":"search","wd":wd},
+			success:function(data){
+				$("#tbody").empty();
+				var s = data.split(".");
+				$("#tbody").append(s[0]);
+				$("#showPage").html(s[1]);
+			}
+		})
+		
+	}
+	function addUser(){
+		var name = $("#name").val();
+		var sex = $("#sex1")[0].checked?"男":"女";
+		var age =$("#age").val();
+		var address = $("#address").val();
+		
+		$.ajax({
+			async:true,
+			url:'user',
+			method:'get',
+			data:{"type":"add","name":name,"age":age,"sex":sex,"address":address},
+			success:function(data){
+				var str = "<tr>";
+				str+="<td>"+(index)+"</td>";
+				str+="<td>"+name+"</td>";
+				str+="<td>"+sex+"</td>";
+				str+="<td>"+age+"</td>";
+				str+="<td>"+address+"</td>";
+				str+="<td>删除 修改</td>";
+				str+="</tr>";
+				index++;
+				$("#tbody").append(str);
+			}
+		});
+		resetUser();
+	}
+	function resetUser(){
+		$("#name").val("");
+		$("#sex1")[0].checked = true;
+		$("#age").val("");
+		$("#address").val("");
+	}
+	
+	function deleteUser(uid){
+		$.ajax({
+			async:true,
+			url:'user',
+			method:'get',
+			data:{"type":"delete","id":uid},
+			success:function(data){
+				var $mtr = $("#mtd"+uid).parent();
+				$mtr.hide(200);
+				//其他人向上递增
+				var $ntds = $mtr.nextAll();
+				$ntds.each(function(index){
+					var $ntd = $ntds.eq(index).children().eq(0);
+					$ntd.html($ntd.html()-1);
+				})
+				//能不能将下一页中的第一个显示到最后去
+				
+				//如果当前数据被删除后,页数减少了,我们需要将页面总数减少
+			}
+			
+			
+		})
+	}
+	
+</script>
+
+</head>
+<body>
+	<table border="1" width="70%" align="center">
+		<tr>
+			<th>姓名</th>
+			<td><input type="text" id="name"/></td>
+		</tr>
+		<tr>
+			<th>性别</th>
+			<td>
+				<input type="radio" id="sex1" name="sex" value="男" checked="checked"/>男
+				<input type="radio" id="sex2" name="sex" value="女"/>女
+			</td>
+		</tr>
+		<tr>
+			<th>年龄</th>
+			<td><input type="number" id="age" max="80" min="18" /></td>
+		</tr>
+		<tr>
+			<th>住址</th>
+			<td><input type="text" id="address"/></td>
+		</tr>
+		<tr>
+			<th colspan="2"><input type="button" value="注册" onclick="addUser()"/></th>
+		</tr>
+	</table>
+	
+	<hr/>
+	<div align="center">
+		<input type="text" id = "wd" onkeyup="changeWd()" />
+	</div>
+	<br/>
+	<table border="1" width="70%" align="center">
+		<thead>
+			<tr>
+				<th>序号</th>
+				<th class="c1">姓名</th>
+				<th class="c1">性别</th>
+				<th class="c1">年龄</th>
+				<th class="c1">住址</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody id="tbody">
+			
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="6" align="right" id="showPage">
+					
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+</body>
+</html>
