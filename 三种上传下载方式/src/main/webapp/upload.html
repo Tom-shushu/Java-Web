@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<form method="post" action="up/a.mvc" enctype="multipart/form-data">
+			文件:<input type="file" name="file" />
+			<input type="submit" value="上传" />
+		</form>
+		<hr/>
+		<form method="post" action="up/b.mvc" enctype="multipart/form-data">
+			文件:<input type="file" name="file" />
+			<input type="submit" value="上传" />
+		</form>
+		<hr/>
+		<form method="post" action="up/c.mvc" enctype="multipart/form-data">
+			文件:<input type="file" name="file" />
+			<input type="submit" value="上传" />
+		</form>
+		
+		<a href="up/d.mvc?name=abcd.zip">文件</a>
+		<a href="content/abcd.zip">文件</a>
+	</body>
+</html>
