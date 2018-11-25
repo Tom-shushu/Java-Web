@@ -1,0 +1,1 @@
+vote1.setVoteTitle(7147,"国内盗版软件猖獗，真的是因为大家穷么？");vote1.initOptionList(7147,[{"sid":"33933","content":"\u662f","num":6588,"type":"radio","percent":44},{"sid":"33934","content":"\u4e0d\u662f","num":8505,"type":"radio","percent":56}]);vote1.initBindOptionClick(7147);vote1.voteStatus(7147,vote1.showType.SHOW_VOTE_INIT,vote1.statusType.VOTING);
