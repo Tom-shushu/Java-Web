@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd 
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 产生对象 
+	<bean id="ui" class="bean.UserInfo">
+		<property name="userId" value="1" />
+		<property name="userName" value="张三" />
+	</bean>
+	
+	<bean id="stu" class="bean.Student">
+		<property name="id" value="1"/>
+		<property name="name" value="李四"/>
+		<property name="sex" value="男"/>
+		<property name="weight" value="67.4"/>
+		<property name="address" value="宝鸡"/>
+		<property name="isNew" value="true"/>
+	</bean>
+	
+	
+	<bean id="order" class="bean.Order">
+		<property name="orderId" value="1"/>
+		<property name="orderContent">
+			<value>这个订单是老订单</value>
+		</property>
+		<property name="ui">
+			<ref bean="ui" />
+		</property>
+	</bean>
+	
+	
+	<bean id="da" class="bean.DemoA" lazy-init="true"></bean>
+	<bean id="db" class="bean.DemoB" lazy-init="true"></bean>
+	<bean id="dc" class="bean.DemoC" lazy-init="true">
+		<property name="array">
+			<array>
+				<value>数组1</value>
+				<value>数组2</value>
+				<value>数组3</value>
+			</array>
+		</property>
+		<property name="list">
+			<list>
+				<value>集合1</value>
+				<value>集合2</value>
+			</list>
+		</property>
+		<property name="set">
+			<set>
+				<value>集合3</value>
+				<value>集合4</value>
+			</set>
+		</property>
+		<property name="map">
+			<map>
+				<entry key="A" value="map1"/>
+				<entry key="B" value="map2"/>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="dd" class="bean.DemoD" lazy-init="true">
+		<constructor-arg name="id" value="1"/>
+		<constructor-arg name="name">
+			<value>张三</value>
+		</constructor-arg>
+		<constructor-arg index="2" ref="db"/>
+		<constructor-arg name="isNew" value="true"/>
+		<constructor-arg name="array" value="a,b,c,d"/>
+		<constructor-arg name="list">
+			<list>
+				<ref bean="da"/>
+				<ref bean="da"/>
+			</list>
+		</constructor-arg>
+		<constructor-arg name="map">
+			<map>
+				<entry key="A" value="1"/>
+				<entry key="B">
+					<value>李四</value>
+				</entry>
+				<entry key="C" value-ref="dc"/>
+				<entry key="D">
+					<ref bean="da"/>
+				</entry>
+			</map>
+		</constructor-arg>
+	</bean>
+	-->
+	<!-- 自动扫描 --><!-- 
+	<context:component-scan base-package="bean"/>
+	<context:component-scan base-package="two"/> -->
+	<context:component-scan base-package="three"/>
+	
+	
+	
+	
+	
+</beans>
