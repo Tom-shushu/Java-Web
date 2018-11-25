@@ -1,0 +1,65 @@
+JSP的九大内置对象:
+request
+response
+out
+session
+page
+application
+
+------------------------------------
+exception:Exception/Throwable实例
+异常对象,等同于Java异常中学习的对象
+代表的是页面在运行过程中,出现的异常情况,只能在isErrorPage='true'中使用
+
+config:ServletConfig实例
+配置对象,负责去配置Servlet,一般在Servlet中使用,配置'文件'
+
+pageContext:PageContext实例
+上下文对象,负责获取到其他对象,负责操纵其他容器
+
+------------------------------------------------------------------------------
+EL表达式(ExpressionLanguage)表达式语言  只能输出显示,不能赋值操作
+精简内容
+1.请求参数的精简
+ ${param.key}  key:代表的是参数的名字   单选结果
+ ${paramValues.key}  key:代表的是参数的名字  复选结果
+2.容器相关的精简
+ ${pageScope.key}  从page容器获取内容
+ ${requestScope.key}  从request容器获取内容
+ ${sessionScope.key}  从session容器获取内容
+ ${applicationScope.key}  从application容器获取内容
+
+${key}:依次从page,request,session,application中寻找内容,找到即停,如果都没有则返回空
+
+3.常量方式
+  +的作用
+4.运算符方式
+  特别说明:注意为空判断
+
+-----------------------------------------------------------------------------
+JSP的标准动作
+<jsp:useBean ../>
+id:对象名,也是放到容器之后的key
+class:类的完整路径
+scope:放到哪个容器中去,page|request|session|application
+
+<jsp:setProperty.../>
+name:对应useBean中的id
+property:代表的是哪个属性,书写的是属性名
+value:给付的常量值
+param:给付的参数值
+
+
+<jsp:getProperty../>
+name:对应useBean中的id
+property:代表的是哪个属性,书写的是属性名
+
+
+<jsp:forward page=""></jsp:forward>
+page:需要转发的页面路径
+
+
+
+------------------------------------------------------------------------------
+JSTL(JavaServer Pages Standard Tag Library，JSP标准标签库)
+
