@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+	<!-- 
+		控制器 
+		id:对象名
+		class:类完整路径
+		url:请求路径
+	-->
+	<bean id="first" class="controller.FirstController" url="first"/>
+	<bean id="second" class="controller.SecondController" url="second"/>
+	
+</beans>
